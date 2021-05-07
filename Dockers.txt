@@ -1,0 +1,79 @@
+//containers are packages which contains (app, binaries,config file, dependencies etc)
+//its OS level virtualization
+//port from one platform to another with out worriying on compatibility.
+//Dockers---> Image---> Containers--->containerized image,<----end user
+//infrastructure--->host OS---> Dockers---> app1,app2,app3...
+//Docker Architecture
+follows client server architecture(client will be CLI , and daemon will be server which executes)
+it has  client, server , REST API
+1.docker client:cli used to interact with the server.
+2.REST API: works as interface b/w client and server.
+
+//Docker installization
+in amazon ami "yum install docker -y"
+
+//basic commands
+docker --version or -v //for version
+docker info //detailed info on containers and docker
+docker --help
+docker login //login to docker hub
+docker pull *image name* //to download the image from the docker hub
+docker images //list image
+docker rmi * image name or id with version* //delete image in local machine
+docker run *image name* //start the container
+docker run -dit -p 8080:8080 tomcat //example with setting port number
+docker ps //list running container
+docker ps -a //show container irespective of status
+docker stop *container id* //stop running container.
+docker start *container ID* //start container.
+docker stats //running container utilization.
+docker system df //hard disk utilization.
+docker system prune // remove unused data that is irreversible.
+
+//Docker images
+from one image we can run many number of containers.
+its immutable (cannot modify the image)
+images are read only templates.
+
+docker image build -t custom-image *file location* //to create custom image.
+docker images // list of images
+docker image history // see history of all cmd used in images.
+docker image ls //another way of listing images.
+docker image inspect *image name* //detailed info of image.
+docker image save *image name* *save it as name*  //take backup of stable image and save as zip file.
+docker image load -i *zip file* //reload the zip file to image 
+docker image rm *image name* //delete image shld explicitly mention version
+docker image prune //delted unused images
+docker image pull *imagename*:*tag* //to pull the specific verision from the hub
+//need to edit this cmds docker build -t tomcat-custom-image .
+docker image ls
+docker image tag tomcat-customer-image dgruploads/tomcat-customer-image
+docker image tag tomcat-custom-image dgruploads/tomcat-custom-image
+docker images
+docker login
+docker image push dgruploads/tomcat-custom-image
+
+//containers
+docker container run -dit -p 8080:8080 --name *container name* *image file* //to run a container
+docker container ls //list container
+docker container attach <container-id> //Attach local standard input, output and error streams to a running container
+ctrl +p ctrl +q //used to exit container without killing it
+docker container commit *commit id* //take the changes in container and creates new image
+docker container cp *file name* *container id*:*location* //copy file from local to container
+docker container exec *containerid* *cmd* //run cmd in container without using attach
+docker container exec -it *containerid* /bin/bash //connect to container
+docker container export *container id* -o *output name* // Export a container file system as a tar archive
+docker container kill *container id* //kill forcefully
+docker container logs *container id* //logs of operations done in that container
+docker container port *container id* //shows port mapped lists
+docker container rename *container id* *new-name* //rename container
+docker container restart *container id* 
+docker container rm *container id* 
+docker container stop *container id* 
+docker container stats *container id* //Displays a live stream of containers resource usage statistics
+docker container start *container id* 
+docker container top *container id* //Display the running processes of a container
+docker container pause *container id* //pause cotainer to Update configuration of one or more containers 
+docker container unpause *container id*
+
+
